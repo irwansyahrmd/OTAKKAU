@@ -1,0 +1,14 @@
+D:\Unity\OTAKKAU\Temp\bin\Debug\Assembly-CSharp.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\Unity\OTAKKAU\Temp\bin\Debug\UnityEditor.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\UnityEngine.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\UnityEngine.UI.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\Mono.Cecil.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\Unity.SerializationLogic.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\Unity.DataContract.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\Unity\OTAKKAU\Temp\bin\Debug\Unity.CecilTools.dll
+D:\Unity\OTAKKAU\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+D:\Unity\OTAKKAU\obj\Debug\Assembly-CSharp.dll
+D:\Unity\OTAKKAU\obj\Debug\Assembly-CSharp.pdb
