@@ -1,20 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Text;
 
 public class GamePlay : MonoBehaviour
 {
-    public Text time, question, answer, c1,c2,c3,c4;
+    public Text time, questionText, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
     private bool isTimeOut;
-	private string pil;
-	private ChoiceGenerator pilihan = new ChoiceGenerator();
+    private string ch;
+    private string answer;
+    private List<int> indexBlankChar;
+    private ChoiceGenerator choice = new ChoiceGenerator();
+    private RandomTextQuestionGenerator randomTextQuestion = new RandomTextQuestionGenerator();
 
     void Awake()
     {
         timer = 10f;
-		pil = pilihan.getChoice ('A');
         isTimeOut = false;
+        TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
+        answer = textQuestion.getAnswer();
+        AnswerGenerator answerGenerator = new AnswerGenerator(answer);
+        questionText.text = textQuestion.getQuestion();
+        answerText.text = answerGenerator.getUncompleteAnswer(4);
+        indexBlankChar = answerGenerator.getIndexBlankChar();
+
+        //ch = choice.getChoice('A');
+        ch = choice.getChoice(answer[indexBlankChar[0]]);
+        Debug.Log(answer[indexBlankChar[0]]);
+        //StringBuilder sb = new StringBuilder(answer);
+        //sb[indexBlankChar[0]] = '*';
+        //answer = sb.ToString();
+
     }
 
     void Update()
@@ -22,10 +40,8 @@ public class GamePlay : MonoBehaviour
         updateTimer();
         checkTimeOut();
         isGameOver();
-		c1.text = ""+pil [0];
-		c2.text = ""+pil [1];
-		c3.text = ""+pil [2];
-		c4.text = ""+pil [3];
+        loadAnswerButtons();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.LoadLevel("MainMenu");
@@ -39,7 +55,7 @@ public class GamePlay : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-			Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
             if (hitInfo)
             {
@@ -47,7 +63,7 @@ public class GamePlay : MonoBehaviour
                 {
                     case "buttonBlue":
                         Debug.Log("BLUE");
-						break;
+                        break;
                     case "buttonGreen":
                         Debug.Log("GREEN");
                         break;
@@ -61,14 +77,14 @@ public class GamePlay : MonoBehaviour
                         Debug.Log("No button has been clicked");
                         break;
                 }
-				pil = pilihan.getChoice('A');
+                ch = choice.getChoice('A');
             }
         }
     }
 
     private void isGameOver()
     {
-        if(isTimeOut)
+        if (isTimeOut)
         {
             Application.LoadLevel("GameOver");
         }
@@ -84,11 +100,24 @@ public class GamePlay : MonoBehaviour
 
     private void updateTimer()
     {
-        if (Time.timeSinceLevelLoad>=1 && !isTimeOut)
+        if (Time.timeSinceLevelLoad >= 1 && !isTimeOut)
         {
             timer -= Time.deltaTime;
             time.text = ((int)timer).ToString();
         }
+    }
+
+    private void checkAnswer(string answerChar)
+    {
+
+    }
+
+    private void loadAnswerButtons()
+    {
+        blueButton.text = "" + ch[0];
+        greenButton.text = "" + ch[1];
+        pinkButton.text = "" + ch[2];
+        yellowButton.text = "" + ch[3];
     }
 
 }

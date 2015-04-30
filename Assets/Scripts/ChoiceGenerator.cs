@@ -24,7 +24,6 @@ public class ChoiceGenerator
 	private string randomChoice(string x){
 		string output = "";
 		var ar = new ArrayList();
-		int idx = 0;
 		while (output.Length < 4)
 		{
 			int i = Random.Range(0, 30) % 4;
