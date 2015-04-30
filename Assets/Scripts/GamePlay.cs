@@ -4,13 +4,16 @@ using UnityEngine.UI;
 
 public class GamePlay : MonoBehaviour
 {
-    public Text time, question;
+    public Text time, question, answer, c1,c2,c3,c4;
     private float timer;
     private bool isTimeOut;
+	private string pil;
+	private ChoiceGenerator pilihan = new ChoiceGenerator();
 
     void Awake()
     {
         timer = 10f;
+		pil = pilihan.getChoice ('A');
         isTimeOut = false;
     }
 
@@ -19,6 +22,10 @@ public class GamePlay : MonoBehaviour
         updateTimer();
         checkTimeOut();
         isGameOver();
+		c1.text = ""+pil [0];
+		c2.text = ""+pil [1];
+		c3.text = ""+pil [2];
+		c4.text = ""+pil [3];
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.LoadLevel("MainMenu");
@@ -32,7 +39,7 @@ public class GamePlay : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+			Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
             if (hitInfo)
             {
@@ -40,7 +47,7 @@ public class GamePlay : MonoBehaviour
                 {
                     case "buttonBlue":
                         Debug.Log("BLUE");
-                        break;
+						break;
                     case "buttonGreen":
                         Debug.Log("GREEN");
                         break;
@@ -54,6 +61,7 @@ public class GamePlay : MonoBehaviour
                         Debug.Log("No button has been clicked");
                         break;
                 }
+				pil = pilihan.getChoice('A');
             }
         }
     }
