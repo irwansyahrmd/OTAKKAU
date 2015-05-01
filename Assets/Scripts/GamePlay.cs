@@ -6,28 +6,24 @@ using System.Text;
 
 public class GamePlay : MonoBehaviour
 {
-    public Text time, questionText, answerText, blueButton, greenButton, pinkButton, yellowButton;
+    public Text time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
+	private int skor;
     private bool isTimeOut;
-    private string ch;
-    private string answer;
+	private string ch, answer;
     private List<int> indexBlankChar;
     private ChoiceGenerator choice = new ChoiceGenerator();
     private RandomTextQuestionGenerator randomTextQuestion = new RandomTextQuestionGenerator();
+
+	void Start(){
+		skor = 0;
+	}
 
     void Awake()
     {
         timer = 10f;
         isTimeOut = false;
-        TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
-        answer = textQuestion.getAnswer();
-        AnswerGenerator answerGenerator = new AnswerGenerator(answer);
-        questionText.text = textQuestion.getQuestion();
-        answerText.text = answerGenerator.getUncompleteAnswer(4);
-        indexBlankChar = answerGenerator.getIndexBlankChar();
-
-        //ch = choice.getChoice('A');
-        ch = choice.getChoice(answer[indexBlankChar[0]]);
+		getNewQuestion ();
         Debug.Log(answer[indexBlankChar[0]]);
         //StringBuilder sb = new StringBuilder(answer);
         //sb[indexBlankChar[0]] = '*';
@@ -41,6 +37,11 @@ public class GamePlay : MonoBehaviour
         checkTimeOut();
         isGameOver();
         loadAnswerButtons();
+		if (answerText.text.Equals (answer)) {
+			getNewQuestion();
+			addPoint();
+			expandTime();
+		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -62,31 +63,64 @@ public class GamePlay : MonoBehaviour
                 switch (hitInfo.transform.gameObject.name)
                 {
                     case "buttonBlue":
-                        Debug.Log("BLUE");
+					if(blueButton.text.Equals(""+answer[indexBlankChar[0]])){
+							nextChar();
+						}
                         break;
                     case "buttonGreen":
-                        Debug.Log("GREEN");
+					if(greenButton.text.Equals(""+answer[indexBlankChar[0]])){
+						nextChar();
+						}    
+					Debug.Log("GREEN");
                         break;
                     case "buttonPink":
-                        Debug.Log("PINK");
+					if(pinkButton.text.Equals(""+answer[indexBlankChar[0]])){
+						nextChar();
+						}
+					Debug.Log("PINK");
                         break;
                     case "buttonYellow":
-                        Debug.Log("YELLOW");
+					if(yellowButton.text.Equals(""+answer[indexBlankChar[0]])){
+						nextChar();
+						}
+					Debug.Log("YELLOW");
                         break;
                     default:
                         Debug.Log("No button has been clicked");
                         break;
                 }
-                ch = choice.getChoice('A');
             }
         }
     }
+
+	private void expandTime (){
+		timer += 5;
+	}
+
+	private void getNewQuestion(){
+		TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
+		answer = textQuestion.getAnswer();
+		AnswerGenerator answerGenerator = new AnswerGenerator(answer);
+		questionText.text = textQuestion.getQuestion();
+		answerText.text = answerGenerator.getUncompleteAnswer(3);
+		indexBlankChar = answerGenerator.getIndexBlankChar();
+		ch = choice.getChoice(answer[indexBlankChar[0]]);
+	}
+
+	private void nextChar(){
+		StringBuilder replaceAns = new StringBuilder(answerText.text);
+		replaceAns [indexBlankChar [0]] = answer [indexBlankChar [0]];
+		answerText.text = replaceAns.ToString();
+		indexBlankChar.RemoveAt(0);
+		ch = choice.getChoice(answer[indexBlankChar[0]]);
+	}
 
     private void isGameOver()
     {
         if (isTimeOut)
         {
-            Application.LoadLevel("GameOver");
+			PlayerPrefs.SetInt("Score",skor);
+			Application.LoadLevel("GameOver");
         }
     }
 
@@ -97,6 +131,11 @@ public class GamePlay : MonoBehaviour
             isTimeOut = !isTimeOut;
         }
     }
+
+	private void addPoint(){
+		skor += 10;
+		score.text = "" + skor;
+	}
 
     private void updateTimer()
     {

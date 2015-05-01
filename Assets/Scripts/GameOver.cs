@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 
-    private int tapCount;
+    private int tapCount, skor;
+	public Text score;
 
 	void Awake () {
         tapCount = 0;
+		score.text = "" + PlayerPrefs.GetInt("Score");
 	}
 	
 	void Update () {
