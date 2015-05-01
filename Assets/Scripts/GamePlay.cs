@@ -8,40 +8,39 @@ public class GamePlay : MonoBehaviour
 {
     public Text time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
-	private int skor;
+    private int skor;
     private bool isTimeOut;
-	private string ch, answer;
+    private string ch, answer;
     private List<int> indexBlankChar;
     private ChoiceGenerator choice = new ChoiceGenerator();
     private RandomTextQuestionGenerator randomTextQuestion = new RandomTextQuestionGenerator();
+    private string blankAnswer;
 
-	void Start(){
-		skor = 0;
-	}
+    void Start()
+    {
+        skor = 0;
+    }
 
     void Awake()
     {
         timer = 10f;
         isTimeOut = false;
-		getNewQuestion ();
-        Debug.Log(answer[indexBlankChar[0]]);
-        //StringBuilder sb = new StringBuilder(answer);
-        //sb[indexBlankChar[0]] = '*';
-        //answer = sb.ToString();
-
+        getNewQuestion();
     }
 
     void Update()
     {
+        changePointer();
         updateTimer();
         checkTimeOut();
         isGameOver();
         loadAnswerButtons();
-		if (answerText.text.Equals (answer)) {
-			getNewQuestion();
-			addPoint();
-			expandTime();
-		}
+        if (answerText.text.Equals(answer))
+        {
+            getNewQuestion();
+            addPoint();
+            expandTime();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -63,27 +62,32 @@ public class GamePlay : MonoBehaviour
                 switch (hitInfo.transform.gameObject.name)
                 {
                     case "buttonBlue":
-					if(blueButton.text.Equals(""+answer[indexBlankChar[0]])){
-							nextChar();
-						}
+                        if (blueButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        {
+                            nextChar();
+                            changePointer();
+                        }
                         break;
                     case "buttonGreen":
-					if(greenButton.text.Equals(""+answer[indexBlankChar[0]])){
-						nextChar();
-						}    
-					Debug.Log("GREEN");
+                        if (greenButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        {
+                            nextChar();
+                            changePointer();
+                        }
                         break;
                     case "buttonPink":
-					if(pinkButton.text.Equals(""+answer[indexBlankChar[0]])){
-						nextChar();
-						}
-					Debug.Log("PINK");
+                        if (pinkButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        {
+                            nextChar();
+                            changePointer();
+                        }
                         break;
                     case "buttonYellow":
-					if(yellowButton.text.Equals(""+answer[indexBlankChar[0]])){
-						nextChar();
-						}
-					Debug.Log("YELLOW");
+                        if (yellowButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        {
+                            nextChar();
+                            changePointer();
+                        }
                         break;
                     default:
                         Debug.Log("No button has been clicked");
@@ -93,34 +97,54 @@ public class GamePlay : MonoBehaviour
         }
     }
 
-	private void expandTime (){
-		timer += 5;
-	}
+    private void changePointer()
+    {
+        if (indexBlankChar.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder(blankAnswer.Substring(0, indexBlankChar[0]));
+            sb.Append("<color=\"#EC87C0\">_</color>");
+            sb.Append(blankAnswer.Substring(indexBlankChar[0] + 1));
+            answerText.text = sb.ToString();
+        }
+    }
 
-	private void getNewQuestion(){
-		TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
-		answer = textQuestion.getAnswer();
-		AnswerGenerator answerGenerator = new AnswerGenerator(answer);
-		questionText.text = textQuestion.getQuestion();
-		answerText.text = answerGenerator.getUncompleteAnswer(3);
-		indexBlankChar = answerGenerator.getIndexBlankChar();
-		ch = choice.getChoice(answer[indexBlankChar[0]]);
-	}
+    private void expandTime()
+    {
+        timer += 5;
+    }
 
-	private void nextChar(){
-		StringBuilder replaceAns = new StringBuilder(answerText.text);
-		replaceAns [indexBlankChar [0]] = answer [indexBlankChar [0]];
-		answerText.text = replaceAns.ToString();
-		indexBlankChar.RemoveAt(0);
-		ch = choice.getChoice(answer[indexBlankChar[0]]);
-	}
+    private void getNewQuestion()
+    {
+        TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
+        answer = textQuestion.getAnswer();
+        AnswerGenerator answerGenerator = new AnswerGenerator(answer);
+        questionText.text = textQuestion.getQuestion();
+        blankAnswer = answerGenerator.getUncompleteAnswer(3);
+        answerText.text = blankAnswer;
+        indexBlankChar = answerGenerator.getIndexBlankChar();
+        ch = choice.getChoice(answer[indexBlankChar[0]]);
+        Debug.Log(answer);
+    }
+
+    private void nextChar()
+    {
+        StringBuilder replaceAns = new StringBuilder(blankAnswer);
+        replaceAns[indexBlankChar[0]] = answer[indexBlankChar[0]];
+        blankAnswer = replaceAns.ToString();
+        answerText.text = blankAnswer;
+        indexBlankChar.RemoveAt(0);
+        if (indexBlankChar.Count > 0)
+        {
+            ch = choice.getChoice(answer[indexBlankChar[0]]);
+        }
+    }
 
     private void isGameOver()
     {
         if (isTimeOut)
         {
-			PlayerPrefs.SetInt("Score",skor);
-			Application.LoadLevel("GameOver");
+            PlayerPrefs.SetInt("Score", skor);
+            Application.LoadLevel("GameOver");
         }
     }
 
@@ -132,10 +156,11 @@ public class GamePlay : MonoBehaviour
         }
     }
 
-	private void addPoint(){
-		skor += 10;
-		score.text = "" + skor;
-	}
+    private void addPoint()
+    {
+        skor += 10;
+        score.text = "" + skor;
+    }
 
     private void updateTimer()
     {
@@ -144,11 +169,6 @@ public class GamePlay : MonoBehaviour
             timer -= Time.deltaTime;
             time.text = ((int)timer).ToString();
         }
-    }
-
-    private void checkAnswer(string answerChar)
-    {
-
     }
 
     private void loadAnswerButtons()
