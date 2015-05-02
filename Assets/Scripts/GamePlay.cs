@@ -6,19 +6,27 @@ using System.Text;
 
 public class GamePlay : MonoBehaviour
 {
-    public Text time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
+    public Text attText, time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
-    private int skor;
+	public AudioClip wrong, correct;
+	AudioSource audio;
+	private int skor, attempt;
     private bool isTimeOut;
-    private string ch, answer;
+    private string ch, answer, attext;
     private List<int> indexBlankChar;
     private ChoiceGenerator choice = new ChoiceGenerator();
     private RandomTextQuestionGenerator randomTextQuestion = new RandomTextQuestionGenerator();
     private string blankAnswer;
+	public bool isWait, playAudio;
 
     void Start()
     {
         skor = 0;
+		attempt = 3;
+		isWait = playAudio = true;
+		attext = attText.text;
+		attText.text = attext + attempt;
+		audio = GetComponent<AudioSource>();
     }
 
     void Awake()
@@ -37,11 +45,19 @@ public class GamePlay : MonoBehaviour
         loadAnswerButtons();
         if (answerText.text.Equals(answer))
         {
-            getNewQuestion();
-            addPoint();
-            expandTime();
+			if (playAudio){
+				audio.PlayOneShot(correct);
+				playAudio = false;
+			}
+			if(isWait){
+				StartCoroutine(Wait());
+			} else {
+				getNewQuestion();
+				addPoint();
+				expandTime();
+				playAudio = true;
+			}
         }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.LoadLevel("MainMenu");
@@ -51,9 +67,15 @@ public class GamePlay : MonoBehaviour
 
     }
 
+	private IEnumerator Wait(){
+		yield return new WaitForSeconds( 1.0f );
+		isWait = false;
+	}
+
     private void isAnswerButtonHit()
     {
-        if (Input.GetMouseButtonDown(0))
+		isWait = true;
+		if (Input.GetMouseButtonDown(0))
         {
             Vector2 pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
@@ -66,28 +88,44 @@ public class GamePlay : MonoBehaviour
                         {
                             nextChar();
                             changePointer();
-                        }
+                        } else {
+							audio.PlayOneShot(wrong);
+							attempt--;
+							attText.text = attext + attempt;
+						}
                         break;
                     case "buttonGreen":
                         if (greenButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
                             nextChar();
                             changePointer();
-                        }
+						} else {
+							audio.PlayOneShot(wrong);
+							attempt--;
+							attText.text = attext + attempt;
+						}
                         break;
                     case "buttonPink":
                         if (pinkButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
                             nextChar();
                             changePointer();
-                        }
+						} else {
+							audio.PlayOneShot(wrong);
+							attempt--;
+							attText.text = attext + attempt;
+						}
                         break;
                     case "buttonYellow":
                         if (yellowButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
                             nextChar();
                             changePointer();
-                        }
+						} else {
+							audio.PlayOneShot(wrong);
+							attempt--;
+							attText.text = attext + attempt;
+						}
                         break;
                     default:
                         Debug.Log("No button has been clicked");
@@ -141,7 +179,7 @@ public class GamePlay : MonoBehaviour
 
     private void isGameOver()
     {
-        if (isTimeOut)
+        if (isTimeOut || attempt == 0)
         {
             PlayerPrefs.SetInt("Score", skor);
             Application.LoadLevel("GameOver");

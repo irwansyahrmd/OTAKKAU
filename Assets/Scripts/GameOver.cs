@@ -5,12 +5,24 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 
-    private int tapCount, skor;
-	public Text score;
+    private int tapCount, skor, highScore;
+	public Text score, textDesc;
+
+	void Start(){
+		if (PlayerPrefs.HasKey ("High Score")) {
+			highScore = PlayerPrefs.GetInt("High Score");
+		} else {
+			highScore = 0;
+		}
+	}
 
 	void Awake () {
         tapCount = 0;
-		score.text = "" + PlayerPrefs.GetInt("Score");
+		skor = PlayerPrefs.GetInt ("Score");
+		score.text = "" + skor;
+		if (skor > highScore) {
+			textDesc.text = "NEW HIGH SCORE!!!";
+		}
 	}
 	
 	void Update () {
