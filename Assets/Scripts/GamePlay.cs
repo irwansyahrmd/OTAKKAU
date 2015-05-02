@@ -68,7 +68,7 @@ public class GamePlay : MonoBehaviour
     }
 
 	private IEnumerator Wait(){
-		yield return new WaitForSeconds( 1.0f );
+		yield return new WaitForSeconds( 0.5f );
 		isWait = false;
 	}
 
