@@ -8,11 +8,8 @@ public class GamePlay : MonoBehaviour
 {
     public Text attText, time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
-<<<<<<< HEAD
 	public AudioClip wrong, correct;
 	AudioSource audio;
-=======
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
 	private int skor, attempt;
     private bool isTimeOut;
     private string ch, answer, attext;
@@ -26,15 +23,10 @@ public class GamePlay : MonoBehaviour
     {
         skor = 0;
 		attempt = 3;
-<<<<<<< HEAD
 		isWait = playAudio = true;
 		attext = attText.text;
 		attText.text = attext + attempt;
 		audio = GetComponent<AudioSource>();
-=======
-		attext = attText.text;
-		attText.text = attext + attempt;
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
     }
 
     void Awake()
@@ -97,10 +89,7 @@ public class GamePlay : MonoBehaviour
                             nextChar();
                             changePointer();
                         } else {
-<<<<<<< HEAD
 							audio.PlayOneShot(wrong);
-=======
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
 							attempt--;
 							attText.text = attext + attempt;
 						}
@@ -111,10 +100,7 @@ public class GamePlay : MonoBehaviour
                             nextChar();
                             changePointer();
 						} else {
-<<<<<<< HEAD
 							audio.PlayOneShot(wrong);
-=======
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
 							attempt--;
 							attText.text = attext + attempt;
 						}
@@ -125,10 +111,7 @@ public class GamePlay : MonoBehaviour
                             nextChar();
                             changePointer();
 						} else {
-<<<<<<< HEAD
 							audio.PlayOneShot(wrong);
-=======
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
 							attempt--;
 							attText.text = attext + attempt;
 						}
@@ -139,10 +122,7 @@ public class GamePlay : MonoBehaviour
                             nextChar();
                             changePointer();
 						} else {
-<<<<<<< HEAD
 							audio.PlayOneShot(wrong);
-=======
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
 							attempt--;
 							attText.text = attext + attempt;
 						}

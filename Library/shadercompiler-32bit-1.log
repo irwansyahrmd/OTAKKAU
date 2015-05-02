@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-932
+Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-4968
 Cmd: getPlatforms
 Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
 
@@ -8,8 +7,3 @@ Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
 Quitting shader compiler process
 
 Crashed!
-=======
-Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-4080
-Cmd: getPlatforms
->>>>>>> 01f3fa3856864660799559dffdab256fdec34072
