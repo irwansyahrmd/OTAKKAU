@@ -7,8 +7,12 @@ public class GameOver : MonoBehaviour {
 
     private int tapCount, skor, highScore;
 	public Text score, textDesc;
+	public AudioClip gameover;
+	AudioSource audio;
 
 	void Start(){
+		audio = GetComponent<AudioSource> ();
+		audio.PlayOneShot (gameover);
 		if (PlayerPrefs.HasKey ("High Score")) {
 			highScore = PlayerPrefs.GetInt("High Score");
 		} else {

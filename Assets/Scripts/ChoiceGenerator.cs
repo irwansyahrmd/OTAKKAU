@@ -11,7 +11,7 @@ public class ChoiceGenerator
 		var ar = new ArrayList();
 		while (ch.Length < 3)
 		{
-			int i = Random.Range(0, s.Length - 1);
+			int i = Random.Range(0, s.Length);
 			if(ar.IndexOf(i)==-1 && !s[i].Equals(addition)){
 				ar.Add(i);
 				ch += s[i];

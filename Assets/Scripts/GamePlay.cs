@@ -21,7 +21,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-        skor = 0;
+		skor = 0;
 		attempt = 3;
 		isWait = playAudio = true;
 		attext = attText.text;
@@ -174,10 +174,12 @@ public class GamePlay : MonoBehaviour
         replaceAns[indexBlankChar[0]] = answer[indexBlankChar[0]];
         blankAnswer = replaceAns.ToString();
         answerText.text = blankAnswer;
-        indexBlankChar.RemoveAt(0);
         if (indexBlankChar.Count > 0)
         {
-            ch = choice.getChoice(answer[indexBlankChar[0]]);
+			indexBlankChar.RemoveAt(0);
+			try{
+				ch = choice.getChoice(answer[indexBlankChar[0]]);
+			}catch{}
         }
     }
 

@@ -7,15 +7,25 @@ using System.Collections.Generic;
 public class RandomTextQuestionGenerator
 {
     private List<TextQuestion> listTextQuestions;
+	private ArrayList index;
     public RandomTextQuestionGenerator()
     {
         listTextQuestions = new List<TextQuestion>();
+		index = new ArrayList ();
         initQuestion();
+		initIndex ();
     }
+
+	private void initIndex(){
+		for (int i = 0; i < listTextQuestions.Count; i++){
+			index.Add(i);
+		}
+	}
 
     public TextQuestion getRandomTextQuestion()
     {
-        int randomIndex = (int)Random.Range(0, listTextQuestions.Count - 1);
+        int randomIndex = Random.Range(0, listTextQuestions.Count);
+		Debug.Log (listTextQuestions.Count);
         TextQuestion textQuestion = listTextQuestions[randomIndex];
         listTextQuestions.RemoveAt(randomIndex);
         return textQuestion;
@@ -113,7 +123,7 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Pemilik Trans TV", "Chairul Tanjung"));
         addTextQuestion(new TextQuestion("Sepatu Sejuta Umat", "Converse"));
         addTextQuestion(new TextQuestion("Induk Organisasi Bulutangkis Indonesia", "PBSI"));
-        addTextQuestion(new TextQuestion("Kompetisi jet darat", "F1"));
+        //addTextQuestion(new TextQuestion("Kompetisi jet darat", "F1"));
         addTextQuestion(new TextQuestion("BUMN Telekomunikasi Indonesia", "Telkom"));
         addTextQuestion(new TextQuestion("Perusahaan Teknologi bernama buah", "Apple"));
         addTextQuestion(new TextQuestion("Organisasi Islam berasal dari Yogyakarta", "Muhammadiyah"));
