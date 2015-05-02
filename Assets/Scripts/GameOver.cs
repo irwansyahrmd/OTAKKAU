@@ -13,6 +13,9 @@ public class GameOver : MonoBehaviour {
 	void Start(){
 		audio = GetComponent<AudioSource> ();
 		audio.PlayOneShot (gameover);
+		skor = PlayerPrefs.GetInt ("Score");
+		score.text = "" + skor;
+		tapCount = 0;
 		if (PlayerPrefs.HasKey ("High Score")) {
 			highScore = PlayerPrefs.GetInt("High Score");
 		} else {
@@ -21,12 +24,7 @@ public class GameOver : MonoBehaviour {
 	}
 
 	void Awake () {
-        tapCount = 0;
-		skor = PlayerPrefs.GetInt ("Score");
-		score.text = "" + skor;
-		if (skor > highScore) {
-			textDesc.text = "NEW HIGH SCORE!!!";
-		}
+        
 	}
 	
 	void Update () {
@@ -34,6 +32,11 @@ public class GameOver : MonoBehaviour {
         {
             Application.Quit();
         }
+
+		if (skor > highScore) {
+			textDesc.text = "NEW HIGH SCORE!!!";
+			PlayerPrefs.SetInt("High Score", skor);
+		}
 
         if (Input.GetMouseButtonDown(0))
         {

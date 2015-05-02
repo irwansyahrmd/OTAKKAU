@@ -44,6 +44,7 @@ public class GamePlay : MonoBehaviour
         checkTimeOut();
         isGameOver();
         loadAnswerButtons();
+		answerText.color = new Color (50f/255, 50f/255, 50f/255);
         if (answerText.text.Equals(answer))
         {
 			if (playAudio){
@@ -69,6 +70,7 @@ public class GamePlay : MonoBehaviour
     }
 
 	private IEnumerator Wait(){
+		answerText.color = new Color (70f/255, 180f/255, 40f/255);
 		yield return new WaitForSeconds( 0.5f );
 		isWait = false;
 	}
@@ -153,7 +155,7 @@ public class GamePlay : MonoBehaviour
 
     private void expandTime()
     {
-        gameTimer.addTime(5);
+        gameTimer.addTime(8);
     }
 
     private void getNewQuestion()

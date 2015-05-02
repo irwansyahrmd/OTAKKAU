@@ -1,14 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RandomTextQuestionGenerator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameOver.cs">
     <Files>
-      <File FileName="Assets\Scripts\GamePlay.cs" Line="160" Column="34" />
+      <File FileName="Assets\Scripts\GamePlay.cs" Line="193" Column="47" />
       <File FileName="Assets\Scripts\TextQuestion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\RandomTextQuestionGenerator.cs" Line="28" Column="37" />
+      <File FileName="Assets\Scripts\RandomTextQuestionGenerator.cs" Line="30" Column="9" />
       <File FileName="Assets\Scripts\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameOver.cs" Line="15" Column="32" />
-      <File FileName="Assets\Scripts\AnswerGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameOver.cs" Line="18" Column="16" />
+      <File FileName="Assets\Scripts\AnswerGenerator.cs" Line="20" Column="7" />
       <File FileName="Assets\Scripts\ChoiceGenerator.cs" Line="9" Column="41" />
+      <File FileName="Assets\Scripts\GameTimer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

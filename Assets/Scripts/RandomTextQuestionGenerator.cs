@@ -27,7 +27,7 @@ public class RandomTextQuestionGenerator
         int randomIndex = Random.Range(0, listTextQuestions.Count);
 		Debug.Log (listTextQuestions.Count);
         TextQuestion textQuestion = listTextQuestions[randomIndex];
-        //listTextQuestions.RemoveAt(randomIndex);
+        listTextQuestions.RemoveAt(randomIndex);
         return textQuestion;
     }
 
