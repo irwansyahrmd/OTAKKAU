@@ -8,7 +8,7 @@ public class GamePlay : MonoBehaviour
 {
     public Text attText, time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
     private float timer;
-	public AudioClip wrong, correct;
+	public AudioClip wrong, correct, tap;
 	AudioSource audio;
 	private int skor, attempt;
     private bool isTimeOut;
@@ -86,7 +86,8 @@ public class GamePlay : MonoBehaviour
                     case "buttonBlue":
                         if (blueButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-                            nextChar();
+							audio.PlayOneShot(tap);
+							nextChar();
                             changePointer();
                         } else {
 							audio.PlayOneShot(wrong);
@@ -97,7 +98,8 @@ public class GamePlay : MonoBehaviour
                     case "buttonGreen":
                         if (greenButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-                            nextChar();
+							audio.PlayOneShot(tap);    
+							nextChar();
                             changePointer();
 						} else {
 							audio.PlayOneShot(wrong);
@@ -108,7 +110,8 @@ public class GamePlay : MonoBehaviour
                     case "buttonPink":
                         if (pinkButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-                            nextChar();
+							audio.PlayOneShot(tap);
+							nextChar();
                             changePointer();
 						} else {
 							audio.PlayOneShot(wrong);
@@ -119,7 +122,8 @@ public class GamePlay : MonoBehaviour
                     case "buttonYellow":
                         if (yellowButton.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-                            nextChar();
+							audio.PlayOneShot(tap);
+							nextChar();
                             changePointer();
 						} else {
 							audio.PlayOneShot(wrong);
