@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour {
 
     private int tapCount, skor, highScore;
-	public Text score, textDesc;
+	public Text score, textDesc, answer;
 	public AudioClip gameover;
 	public AudioSource audio;
 
 	void Start(){
 		audio = GetComponent<AudioSource> ();
 		audio.PlayOneShot (gameover);
+		answer.text = PlayerPrefs.GetString ("Correct Answer");
 		skor = PlayerPrefs.GetInt ("Score");
 		score.text = "" + skor;
 		tapCount = 0;

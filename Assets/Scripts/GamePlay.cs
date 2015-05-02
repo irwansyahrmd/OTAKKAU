@@ -162,6 +162,7 @@ public class GamePlay : MonoBehaviour
     {
         TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
         answer = textQuestion.getAnswer();
+		PlayerPrefs.SetString ("Correct Answer", textQuestion.getNormAnswer());
         AnswerGenerator answerGenerator = new AnswerGenerator(answer);
         questionText.text = textQuestion.getQuestion();
         blankAnswer = answerGenerator.getUncompleteAnswer();

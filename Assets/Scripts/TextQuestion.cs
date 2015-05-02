@@ -11,7 +11,7 @@ public class TextQuestion
     public TextQuestion(String question, String answer)
     {
         this.question = question.ToUpper();
-        this.answer = insertSpace(answer.ToUpper());
+        this.answer = answer.ToUpper();
     }
 
     public String getQuestion()
@@ -21,8 +21,13 @@ public class TextQuestion
 
     public String getAnswer()
     {
-        return answer;
+		return insertSpace(answer);
     }
+
+	public String getNormAnswer()
+	{
+		return answer;
+	}
 
     private string insertSpace(string text)
     {

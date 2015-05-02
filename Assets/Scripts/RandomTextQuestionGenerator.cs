@@ -13,14 +13,7 @@ public class RandomTextQuestionGenerator
         listTextQuestions = new List<TextQuestion>();
 		index = new ArrayList ();
         initQuestion();
-		initIndex ();
     }
-
-	private void initIndex(){
-		for (int i = 0; i < listTextQuestions.Count; i++){
-			index.Add(i);
-		}
-	}
 
     public TextQuestion getRandomTextQuestion()
     {

@@ -17,7 +17,7 @@ public class AnswerGenerator
     {
         string uncompleteAnswer = "";
 		int len = answer.Length / 2;
-		if (len <= 4) {
+		if (len <= 3) {
 			uncompleteAnswer = makeUncompleteAnswer(2);
 		} else if (len <= 7) {
 			uncompleteAnswer = makeUncompleteAnswer(3);
@@ -26,45 +26,6 @@ public class AnswerGenerator
 		} else {
 			uncompleteAnswer = makeUncompleteAnswer(5);
 		}
-//        switch (answer.Length/2)
-//        {
-//            case 0:
-//                uncompleteAnswer = " ";
-//                break;
-//            case 1:
-//                uncompleteAnswer = makeUncompleteAnswer(1);
-//                break;
-//            case 2:
-//                uncompleteAnswer = makeUncompleteAnswer(2);
-//                break;
-//            case 3:
-//                uncompleteAnswer = makeUncompleteAnswer(2);
-//                break;
-//            case 4:
-//                uncompleteAnswer = makeUncompleteAnswer(2);
-//                break;
-//            case 5:
-//                uncompleteAnswer = makeUncompleteAnswer(2);
-//                break;
-//            case 6:
-//                uncompleteAnswer = makeUncompleteAnswer(3);
-//                break;
-//            case 7:
-//                uncompleteAnswer = makeUncompleteAnswer(3);
-//                break;
-//            case 8:
-//                uncompleteAnswer = makeUncompleteAnswer(3);
-//                break;
-//            case 9:
-//                uncompleteAnswer = makeUncompleteAnswer(3);
-//                break;
-//            case 10:
-//                uncompleteAnswer = makeUncompleteAnswer(4);
-//                break;
-//            default:
-//                uncompleteAnswer = makeUncompleteAnswer(5);
-//                break;
-//        }
         return uncompleteAnswer;
     }
 
