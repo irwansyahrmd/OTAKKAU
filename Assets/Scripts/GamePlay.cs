@@ -7,9 +7,9 @@ using System.Text;
 public class GamePlay : MonoBehaviour
 {
     public Text attText, time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
-    private float timer;
+    private GameTimer gameTimer;
 	public AudioClip wrong, correct, tap;
-	AudioSource audio;
+	public AudioSource audio;
 	private int skor, attempt;
     private bool isTimeOut;
     private string ch, answer, attext;
@@ -31,7 +31,8 @@ public class GamePlay : MonoBehaviour
 
     void Awake()
     {
-        timer = 10f;
+        gameTimer = GameTimer.getInstance();
+        gameTimer.currentTime = 10f;
         isTimeOut = false;
         getNewQuestion();
     }
@@ -152,7 +153,7 @@ public class GamePlay : MonoBehaviour
 
     private void expandTime()
     {
-        timer += 5;
+        gameTimer.addTime(5);
     }
 
     private void getNewQuestion()
@@ -161,7 +162,7 @@ public class GamePlay : MonoBehaviour
         answer = textQuestion.getAnswer();
         AnswerGenerator answerGenerator = new AnswerGenerator(answer);
         questionText.text = textQuestion.getQuestion();
-        blankAnswer = answerGenerator.getUncompleteAnswer(3);
+        blankAnswer = answerGenerator.getUncompleteAnswer();
         answerText.text = blankAnswer;
         indexBlankChar = answerGenerator.getIndexBlankChar();
         ch = choice.getChoice(answer[indexBlankChar[0]]);
@@ -210,8 +211,8 @@ public class GamePlay : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad >= 1 && !isTimeOut)
         {
-            timer -= Time.deltaTime;
-            time.text = ((int)timer).ToString();
+            gameTimer.currentTime -= Time.deltaTime;
+            time.text = ((int)gameTimer.currentTime).ToString();
         }
     }
 

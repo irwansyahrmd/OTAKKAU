@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AnswerGenerator">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAAAAAY=</HashCode>
+      <FileName>Assets\Scripts\AnswerGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChoiceGenerator">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\ChoiceGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOver">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAACAAAACAAAAIAAABIAAAAAAAAAJAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\GameOver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePlay">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKQBBLQAAKEAwAoAAGAYAIC5AASAIAECBAlEAAAAAEI=</HashCode>
+      <FileName>Assets\Scripts\GamePlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTimer">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <AssociationLine Name="GameTimer1" Type="GameTimer" ManuallyRouted="true">
+      <Path>
+        <Point X="10" Y="1.625" />
+        <Point X="10.375" Y="1.625" />
+        <Point X="10.375" Y="0.375" />
+        <Point X="9.375" Y="0.375" />
+        <Point X="9.375" Y="0.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEEAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameTimer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GameTimer1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MainMenu">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RandomTextQuestionGenerator">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAIAAAAQAAABAAAAAAAAAAAAAAAABIAA=</HashCode>
+      <FileName>Assets\Scripts\RandomTextQuestionGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextQuestion">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAAQAgAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\TextQuestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -13,13 +13,58 @@ public class AnswerGenerator
         indexBlankChar = new List<int>();
     }
 
-    public string getUncompleteAnswer(int numberOfBlankChar)
+    public string getUncompleteAnswer()
+    {
+        string uncompleteAnswer = "";
+        switch (answer.Length/2)
+        {
+            case 0:
+                uncompleteAnswer = " ";
+                break;
+            case 1:
+                uncompleteAnswer = makeUncompleteAnswer(1);
+                break;
+            case 2:
+                uncompleteAnswer = makeUncompleteAnswer(1);
+                break;
+            case 3:
+                uncompleteAnswer = makeUncompleteAnswer(2);
+                break;
+            case 4:
+                uncompleteAnswer = makeUncompleteAnswer(2);
+                break;
+            case 5:
+                uncompleteAnswer = makeUncompleteAnswer(2);
+                break;
+            case 6:
+                uncompleteAnswer = makeUncompleteAnswer(3);
+                break;
+            case 7:
+                uncompleteAnswer = makeUncompleteAnswer(3);
+                break;
+            case 8:
+                uncompleteAnswer = makeUncompleteAnswer(3);
+                break;
+            case 9:
+                uncompleteAnswer = makeUncompleteAnswer(3);
+                break;
+            case 10:
+                uncompleteAnswer = makeUncompleteAnswer(4);
+                break;
+            default:
+                uncompleteAnswer = makeUncompleteAnswer(5);
+                break;
+        }
+        return uncompleteAnswer;
+    }
+
+    private string makeUncompleteAnswer(int numberOfBlankChar)
     {
         string uncompleteAnswer = answer;
         StringBuilder sb = new StringBuilder(answer);
-        for (int i = 0; i < numberOfBlankChar;)
+        for (int i = 0; i < numberOfBlankChar; )
         {
-            int randCharPosition = (int)Random.Range(0,answer.Length-1);
+            int randCharPosition = (int)Random.Range(0, answer.Length);
             if (!sb[randCharPosition].Equals(' ') && !sb[randCharPosition].Equals('_'))
             {
                 sb[randCharPosition] = '_';
@@ -30,6 +75,7 @@ public class AnswerGenerator
         uncompleteAnswer = sb.ToString();
         return uncompleteAnswer;
     }
+
 
     public List<int> getIndexBlankChar()
     {

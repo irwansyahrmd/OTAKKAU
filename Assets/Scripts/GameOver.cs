@@ -8,7 +8,7 @@ public class GameOver : MonoBehaviour {
     private int tapCount, skor, highScore;
 	public Text score, textDesc;
 	public AudioClip gameover;
-	AudioSource audio;
+	public AudioSource audio;
 
 	void Start(){
 		audio = GetComponent<AudioSource> ();

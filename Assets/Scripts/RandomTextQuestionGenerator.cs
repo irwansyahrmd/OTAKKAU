@@ -27,7 +27,7 @@ public class RandomTextQuestionGenerator
         int randomIndex = Random.Range(0, listTextQuestions.Count);
 		Debug.Log (listTextQuestions.Count);
         TextQuestion textQuestion = listTextQuestions[randomIndex];
-        listTextQuestions.RemoveAt(randomIndex);
+        //listTextQuestions.RemoveAt(randomIndex);
         return textQuestion;
     }
 
@@ -38,20 +38,6 @@ public class RandomTextQuestionGenerator
 
     public void initQuestion()
     {
-        //addTextQuestion(new TextQuestion("Gunung tertinggi di dunia", "Everest"));
-        //addTextQuestion(new TextQuestion("Founder Facebook.com", "Zuckerberg"));
-        //addTextQuestion(new TextQuestion("Presiden Indonesia ke - 2 ?", "Soeharto"));
-        //addTextQuestion(new TextQuestion("Sebutan kicauan pada twitter", "tweet"));
-        //addTextQuestion(new TextQuestion("Kitab suci umat hindu", "weda"));
-        //addTextQuestion(new TextQuestion("Mata uang Thailand", "baht"));
-        //addTextQuestion(new TextQuestion("Dokter wanita pertama di dunia", "blackwell"));
-        //addTextQuestion(new TextQuestion("Serangga penghasil madu", "lebah"));
-        //addTextQuestion(new TextQuestion("Negara penyelenggara Piala Dunia 2022?", "qatar"));
-        //addTextQuestion(new TextQuestion("Kemampuan bunglon untuk mengubah warna kulit", "mimikri"));
-        //addTextQuestion(new TextQuestion("Presiden pertama Amerika Serikat", "abraham  lincoln"));
-        //addTextQuestion(new TextQuestion("Kota di Jepang yang terkena bom Atom pada PD II", "nagasaki"));
-        //addTextQuestion(new TextQuestion("Alat musik tradisional Jawa Barat", "angklung"));
-
         addTextQuestion(new TextQuestion("Gunung tertinggi di dunia", "Everest"));
         addTextQuestion(new TextQuestion("Siapa founder Facebook.com ", "Mark Zuckerberg"));
         addTextQuestion(new TextQuestion("Siapa presiden Indonesia ke - 20 ", "Soeharto"));
@@ -61,7 +47,6 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Lagu daerah ‘Anak Kambing Saya’ berasal dari provinsi", "Nusa Tenggara Timur"));
         addTextQuestion(new TextQuestion("Mata uang Thailand", "Baht"));
         addTextQuestion(new TextQuestion("Siapakah dokter wanita pertama di dunia", "Elizabeth Blackwell"));
-        addTextQuestion(new TextQuestion("Sebutan orang yang memiliki lebih dari 1 istri ", "Bajingan"));
         addTextQuestion(new TextQuestion("Serangga yang menghasilkan madu ", "Lebah"));
         addTextQuestion(new TextQuestion("Kota tempat diselenggarakannya Piala Dunia 2022", "Qatar"));
         addTextQuestion(new TextQuestion("Kemampuan bunglon untuk mengubah warna sesuai lingkungannya disebut", "Mimikri"));
@@ -82,8 +67,6 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Alat pernafasan belalang", "Trakea"));
         addTextQuestion(new TextQuestion("Ideologi Indonesia ", "Pancasila"));
         addTextQuestion(new TextQuestion("Kota terpadat di dunia adalah", "Seoul"));
-        addTextQuestion(new TextQuestion("Sebutan untuk wanita misterius dalam kasus korupsi impor daging sapi", "bunda putri"));
-        addTextQuestion(new TextQuestion("Provinsi termuda di Indonesia", "Kalimantan Utara"));
         addTextQuestion(new TextQuestion("Apakah ibukota Maluku Utara", "Ternate"));
         addTextQuestion(new TextQuestion("Sebutan untuk bagian belakang kapal", "Buritan"));
         addTextQuestion(new TextQuestion("Nama galaksi tempat tata surya kita berada", "Milky Way"));
@@ -123,7 +106,7 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Pemilik Trans TV", "Chairul Tanjung"));
         addTextQuestion(new TextQuestion("Sepatu Sejuta Umat", "Converse"));
         addTextQuestion(new TextQuestion("Induk Organisasi Bulutangkis Indonesia", "PBSI"));
-        //addTextQuestion(new TextQuestion("Kompetisi jet darat", "F1"));
+        addTextQuestion(new TextQuestion("Kompetisi mobil jet darat", "F1"));
         addTextQuestion(new TextQuestion("BUMN Telekomunikasi Indonesia", "Telkom"));
         addTextQuestion(new TextQuestion("Perusahaan Teknologi bernama buah", "Apple"));
         addTextQuestion(new TextQuestion("Organisasi Islam berasal dari Yogyakarta", "Muhammadiyah"));
@@ -132,7 +115,6 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Indonesia dan Malaysia", "Serumpun"));
         addTextQuestion(new TextQuestion("1 Semenanjung, Beda ideologi", "Korea"));
         addTextQuestion(new TextQuestion("Pusat Tata Surya Kita", "Matahari"));
-        addTextQuestion(new TextQuestion("Dahulu Planet, sekarang bukan", "Pluto"));
         addTextQuestion(new TextQuestion("Musuh abadi Batman", "Joker"));
         addTextQuestion(new TextQuestion("Superhero dengan kekuatan cincin", "Green lantern"));
         addTextQuestion(new TextQuestion("Largest Indonesian online Community", "Kaskus"));
@@ -145,7 +127,6 @@ public class RandomTextQuestionGenerator
         addTextQuestion(new TextQuestion("Negara di 2 Benua", "Rusia"));
         addTextQuestion(new TextQuestion("Nama Aliansi Jerman, Italia, dan Jepang saat perang dunia II", "AXIS"));
         addTextQuestion(new TextQuestion("Pemimpin Bangsa Mongol yang terkenal", "Gengis Khan"));
-        addTextQuestion(new TextQuestion("Sungai Terpanjang di afrika", "Nil"));
         addTextQuestion(new TextQuestion("Imperium terbesar di dunia", "Britania Raya"));
         addTextQuestion(new TextQuestion("panggilan untuk anak dari paman / bibi", "Sepupu"));
         addTextQuestion(new TextQuestion("Ikatan keluarga", "Marga"));
