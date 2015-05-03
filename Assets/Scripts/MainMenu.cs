@@ -2,19 +2,15 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-
-	void Start () {
 	
-	}
-	
-	void Update () {
+	public void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
 	}
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         Application.LoadLevel("GamePlay");
     }

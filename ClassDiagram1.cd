@@ -1,28 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AnswerGenerator">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="8.25" Y="4.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAAAAAY=</HashCode>
       <FileName>Assets\Scripts\AnswerGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ChoiceGenerator">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAIAAAA=</HashCode>
       <FileName>Assets\Scripts\ChoiceGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameOver">
-    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Position X="6.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQAAAAAACAAAACAAAAIAAABIAAAAAAAAAJAAAAAAEA=</HashCode>
+      <HashCode>gAQAAAAAACIAAACAAAAIAAABIAAAAAAAAAJAAAAAAEI=</HashCode>
       <FileName>Assets\Scripts\GameOver.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GamePlay" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="GamePlay">
-    <Position X="6.25" Y="0.75" Width="1.5" />
+    <Position X="3.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AKQBBLQAAKEAwAoAAGAYAIC5AASAIAECBAlEAAAAAEI=</HashCode>
       <FileName>Assets\Scripts\GamePlay.cs</FileName>
@@ -48,23 +51,23 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MainMenu">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MainMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RandomTextQuestionGenerator">
-    <Position X="2.25" Y="2.5" Width="1.5" />
+    <Position X="5.25" Y="5.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAIAAAAQAAABAAAAAAAAAAAAAAAABIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAQAAABAAAAAAAAAAAAAAAABIAA=</HashCode>
       <FileName>Assets\Scripts\RandomTextQuestionGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TextQuestion">
-    <Position X="4.25" Y="4" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAAQAgAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAgQAgAAAAAAAI=</HashCode>
       <FileName>Assets\Scripts\TextQuestion.cs</FileName>
     </TypeIdentifier>
   </Class>

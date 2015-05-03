@@ -5,7 +5,7 @@ public class ChoiceGenerator
 {
 	public ChoiceGenerator(){
 	}
-	public string getChoice(char addition){
+	public string GetChoice(char addition){
 		string s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		string ch = "";
 		var ar = new ArrayList();
@@ -18,10 +18,10 @@ public class ChoiceGenerator
 			}
 		}
 		ch += addition;
-		return randomChoice(ch);
+		return RandomChoice(ch);
 	}
 
-	private string randomChoice(string x){
+	private string RandomChoice(string args){
 		string output = "";
 		var ar = new ArrayList();
 		while (output.Length < 4)
@@ -29,7 +29,7 @@ public class ChoiceGenerator
 			int i = Random.Range(0, 30) % 4;
 			if(ar.IndexOf(i)==-1){
 				ar.Add(i);
-				output += x[i];
+				output += args[i];
 			}
 		}
 		return output;

@@ -14,22 +14,22 @@ public class TextQuestion
         this.answer = answer.ToUpper();
     }
 
-    public String getQuestion()
+    public String GetQuestion()
     {
         return question;
     }
 
-    public String getAnswer()
+    public String GetAnswer()
     {
-		return insertSpace(answer);
+		return InsertSpace(answer);
     }
 
-	public String getNormAnswer()
+	public String GetNormAnswer()
 	{
 		return answer;
 	}
 
-    private string insertSpace(string text)
+    private string InsertSpace(string text)
     {
         String newText = "";
         for (int i = 0; i < text.Length-1; i++)

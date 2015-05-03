@@ -6,57 +6,59 @@ using System.Text;
 
 public class GamePlay : MonoBehaviour
 {
-    public Text attText, time, questionText, score, answerText, blueButton, greenButton, pinkButton, yellowButton;
+    public Text numberOfAttemptLabel, timeLabel, questionLabel, scoreLabel, 
+        answerLabel, blueButtonLabel, greenButtonLabel, pinkButtonLabel, 
+        yellowButtonLabel;
+    public AudioClip wrongSound, correctSound, tapSound;
+    public AudioSource gamePlayAudioSource;
+    public bool isWait, playAudio;
     private GameTimer gameTimer;
-	public AudioClip wrong, correct, tap;
-	public AudioSource audio;
-	private int skor, attempt;
+	private int score, numberOfAttempt;
     private bool isTimeOut;
-    private string ch, answer, attext;
+    private string listCharacterForAnswerButton, answer, attemptText;
     private List<int> indexBlankChar;
     private ChoiceGenerator choice = new ChoiceGenerator();
     private RandomTextQuestionGenerator randomTextQuestion = new RandomTextQuestionGenerator();
     private string blankAnswer;
-	public bool isWait, playAudio;
 
-    void Start()
+    public void Start()
     {
-		skor = 0;
-		attempt = 3;
+		score = 0;
+		numberOfAttempt = 3;
 		isWait = playAudio = true;
-		attext = attText.text;
-		attText.text = attext + attempt;
-		audio = GetComponent<AudioSource>();
+		attemptText = numberOfAttemptLabel.text;
+		numberOfAttemptLabel.text = attemptText + numberOfAttempt;
+		gamePlayAudioSource = GetComponent<AudioSource>();
     }
 
-    void Awake()
+    public void Awake()
     {
         gameTimer = GameTimer.getInstance();
         gameTimer.currentTime = 10f;
         isTimeOut = false;
-        getNewQuestion();
+        GetNewQuestion();
     }
 
-    void Update()
+    public void Update()
     {
-        changePointer();
-        updateTimer();
-        checkTimeOut();
-        isGameOver();
-        loadAnswerButtons();
-		answerText.color = new Color (50f/255, 50f/255, 50f/255);
-        if (answerText.text.Equals(answer))
+        ChangePointer();
+        UpdateTimer();
+        CheckTimeOut();
+        IsGameOver();
+        LoadAnswerButtons();
+		answerLabel.color = new Color (50f/255, 50f/255, 50f/255);
+        if (answerLabel.text.Equals(answer))
         {
 			if (playAudio){
-				audio.PlayOneShot(correct);
+				gamePlayAudioSource.PlayOneShot(correctSound);
 				playAudio = false;
 			}
 			if(isWait){
 				StartCoroutine(Wait());
 			} else {
-				getNewQuestion();
-				addPoint();
-				expandTime();
+				GetNewQuestion();
+				AddScore();
+                gameTimer.addTime(8);
 				playAudio = true;
 			}
         }
@@ -65,17 +67,17 @@ public class GamePlay : MonoBehaviour
             Application.LoadLevel("MainMenu");
         }
 
-        isAnswerButtonHit();
+        IsAnswerButtonHit();
 
     }
 
 	private IEnumerator Wait(){
-		answerText.color = new Color (70f/255, 180f/255, 40f/255);
+		answerLabel.color = new Color (70f/255, 180f/255, 40f/255);
 		yield return new WaitForSeconds( 0.5f );
 		isWait = false;
 	}
 
-    private void isAnswerButtonHit()
+    private void IsAnswerButtonHit()
     {
 		isWait = true;
 		if (Input.GetMouseButtonDown(0))
@@ -87,51 +89,51 @@ public class GamePlay : MonoBehaviour
                 switch (hitInfo.transform.gameObject.name)
                 {
                     case "buttonBlue":
-                        if (blueButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        if (blueButtonLabel.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-							audio.PlayOneShot(tap);
-							nextChar();
-                            changePointer();
+							gamePlayAudioSource.PlayOneShot(tapSound);
+							MovePointerToNextBlankChar();
+                            ChangePointer();
                         } else {
-							audio.PlayOneShot(wrong);
-							attempt--;
-							attText.text = attext + attempt;
+							gamePlayAudioSource.PlayOneShot(wrongSound);
+							numberOfAttempt--;
+							numberOfAttemptLabel.text = attemptText + numberOfAttempt;
 						}
                         break;
                     case "buttonGreen":
-                        if (greenButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        if (greenButtonLabel.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-							audio.PlayOneShot(tap);    
-							nextChar();
-                            changePointer();
+							gamePlayAudioSource.PlayOneShot(tapSound);    
+							MovePointerToNextBlankChar();
+                            ChangePointer();
 						} else {
-							audio.PlayOneShot(wrong);
-							attempt--;
-							attText.text = attext + attempt;
+							gamePlayAudioSource.PlayOneShot(wrongSound);
+							numberOfAttempt--;
+							numberOfAttemptLabel.text = attemptText + numberOfAttempt;
 						}
                         break;
                     case "buttonPink":
-                        if (pinkButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        if (pinkButtonLabel.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-							audio.PlayOneShot(tap);
-							nextChar();
-                            changePointer();
+							gamePlayAudioSource.PlayOneShot(tapSound);
+							MovePointerToNextBlankChar();
+                            ChangePointer();
 						} else {
-							audio.PlayOneShot(wrong);
-							attempt--;
-							attText.text = attext + attempt;
+							gamePlayAudioSource.PlayOneShot(wrongSound);
+							numberOfAttempt--;
+							numberOfAttemptLabel.text = attemptText + numberOfAttempt;
 						}
                         break;
                     case "buttonYellow":
-                        if (yellowButton.text.Equals("" + answer[indexBlankChar[0]]))
+                        if (yellowButtonLabel.text.Equals("" + answer[indexBlankChar[0]]))
                         {
-							audio.PlayOneShot(tap);
-							nextChar();
-                            changePointer();
+							gamePlayAudioSource.PlayOneShot(tapSound);
+							MovePointerToNextBlankChar();
+                            ChangePointer();
 						} else {
-							audio.PlayOneShot(wrong);
-							attempt--;
-							attText.text = attext + attempt;
+							gamePlayAudioSource.PlayOneShot(wrongSound);
+							numberOfAttempt--;
+							numberOfAttemptLabel.text = attemptText + numberOfAttempt;
 						}
                         break;
                     default:
@@ -142,89 +144,84 @@ public class GamePlay : MonoBehaviour
         }
     }
 
-    private void changePointer()
+    private void ChangePointer()
     {
         if (indexBlankChar.Count > 0)
         {
             StringBuilder sb = new StringBuilder(blankAnswer.Substring(0, indexBlankChar[0]));
             sb.Append("<color=\"#EC87C0\">_</color>");
             sb.Append(blankAnswer.Substring(indexBlankChar[0] + 1));
-            answerText.text = sb.ToString();
+            answerLabel.text = sb.ToString();
         }
     }
 
-    private void expandTime()
+    private void GetNewQuestion()
     {
-        gameTimer.addTime(8);
-    }
-
-    private void getNewQuestion()
-    {
-        TextQuestion textQuestion = randomTextQuestion.getRandomTextQuestion();
-        answer = textQuestion.getAnswer();
-		PlayerPrefs.SetString ("Correct Answer", textQuestion.getNormAnswer());
+        TextQuestion textQuestion = randomTextQuestion.GetRandomTextQuestion();
+        answer = textQuestion.GetAnswer();
+		PlayerPrefs.SetString ("Correct Answer", textQuestion.GetNormAnswer());
         AnswerGenerator answerGenerator = new AnswerGenerator(answer);
-        questionText.text = textQuestion.getQuestion();
-        blankAnswer = answerGenerator.getUncompleteAnswer();
-        answerText.text = blankAnswer;
-        indexBlankChar = answerGenerator.getIndexBlankChar();
-        ch = choice.getChoice(answer[indexBlankChar[0]]);
+        questionLabel.text = textQuestion.GetQuestion();
+        blankAnswer = answerGenerator.GetUncompleteAnswer();
+        answerLabel.text = blankAnswer;
+        indexBlankChar = answerGenerator.GetIndexBlankChar();
+        listCharacterForAnswerButton = choice.GetChoice(answer[indexBlankChar[0]]);
         Debug.Log(answer);
     }
 
-    private void nextChar()
+    private void MovePointerToNextBlankChar()
     {
         StringBuilder replaceAns = new StringBuilder(blankAnswer);
         replaceAns[indexBlankChar[0]] = answer[indexBlankChar[0]];
         blankAnswer = replaceAns.ToString();
-        answerText.text = blankAnswer;
+        answerLabel.text = blankAnswer;
         if (indexBlankChar.Count > 0)
         {
 			indexBlankChar.RemoveAt(0);
 			try{
-				ch = choice.getChoice(answer[indexBlankChar[0]]);
+				listCharacterForAnswerButton = choice.GetChoice(answer[indexBlankChar[0]]);
 			}catch{}
         }
     }
 
-    private void isGameOver()
+    private void IsGameOver()
     {
-        if (isTimeOut || attempt == 0)
+        if (isTimeOut || numberOfAttempt == 0)
         {
-            PlayerPrefs.SetInt("Score", skor);
+            PlayerPrefs.SetInt("Score", score);
             Application.LoadLevel("GameOver");
         }
     }
 
-    private void checkTimeOut()
+    private void CheckTimeOut()
     {
-        if (time.text.Equals("0"))
+        if (timeLabel.text.Equals("0"))
         {
             isTimeOut = !isTimeOut;
         }
     }
 
-    private void addPoint()
+    private void AddScore()
     {
-        skor += 10;
-        score.text = "" + skor;
+        score += 10;
+        scoreLabel.text = "" + score;
     }
 
-    private void updateTimer()
+    private void UpdateTimer()
     {
         if (Time.timeSinceLevelLoad >= 1 && !isTimeOut)
         {
             gameTimer.currentTime -= Time.deltaTime;
-            time.text = ((int)gameTimer.currentTime).ToString();
+            timeLabel.text = ((int)gameTimer.currentTime).ToString();
         }
     }
 
-    private void loadAnswerButtons()
+    private void LoadAnswerButtons()
     {
-        blueButton.text = "" + ch[0];
-        greenButton.text = "" + ch[1];
-        pinkButton.text = "" + ch[2];
-        yellowButton.text = "" + ch[3];
+        blueButtonLabel.text = "" + listCharacterForAnswerButton[0];
+        greenButtonLabel.text = "" + listCharacterForAnswerButton[1];
+        pinkButtonLabel.text = "" + listCharacterForAnswerButton[2];
+        yellowButtonLabel.text = "" + listCharacterForAnswerButton[3];
     }
 
 }

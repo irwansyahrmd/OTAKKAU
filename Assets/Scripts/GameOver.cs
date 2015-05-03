@@ -5,17 +5,28 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 
-    private int tapCount, skor, highScore;
-	public Text score, textDesc, answer;
-	public AudioClip gameover;
-	public AudioSource audio;
+    private int tapCount, finalScore, highScore;
+	public Text scoreLabel, textDescriptionLabel, answerLabel;
+	public AudioClip gameOverSound;
+	public AudioSource gameOverAudioSource;
 
-	void Start(){
-		audio = GetComponent<AudioSource> ();
-		audio.PlayOneShot (gameover);
-		answer.text = PlayerPrefs.GetString ("Correct Answer");
-		skor = PlayerPrefs.GetInt ("Score");
-		score.text = "" + skor;
+    public global::GamePlay GamePlay
+    {
+        get
+        {
+            throw new System.NotImplementedException();
+        }
+        set
+        {
+        }
+    }
+
+	public void Start(){
+		gameOverAudioSource = GetComponent<AudioSource> ();
+		gameOverAudioSource.PlayOneShot (gameOverSound);
+		answerLabel.text = PlayerPrefs.GetString ("Correct Answer");
+		finalScore = PlayerPrefs.GetInt ("Score");
+		scoreLabel.text = "" + finalScore;
 		tapCount = 0;
 		if (PlayerPrefs.HasKey ("High Score")) {
 			highScore = PlayerPrefs.GetInt("High Score");
@@ -23,20 +34,16 @@ public class GameOver : MonoBehaviour {
 			highScore = 0;
 		}
 	}
-
-	void Awake () {
-        
-	}
 	
-	void Update () {
+	public void Update () {
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
         }
 
-		if (skor > highScore) {
-			textDesc.text = "NEW HIGH SCORE!!!";
-			PlayerPrefs.SetInt("High Score", skor);
+		if (finalScore > highScore) {
+			textDescriptionLabel.text = "NEW HIGH SCORE!!!";
+			PlayerPrefs.SetInt("High Score", finalScore);
 		}
 
         if (Input.GetMouseButtonDown(0))

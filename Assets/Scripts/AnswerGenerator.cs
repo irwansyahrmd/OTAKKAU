@@ -13,23 +13,23 @@ public class AnswerGenerator
         indexBlankChar = new List<int>();
     }
 
-    public string getUncompleteAnswer()
+    public string GetUncompleteAnswer()
     {
         string uncompleteAnswer = "";
 		int len = answer.Length / 2;
 		if (len <= 3) {
-			uncompleteAnswer = makeUncompleteAnswer(2);
+			uncompleteAnswer = MakeUncompleteAnswer(2);
 		} else if (len <= 7) {
-			uncompleteAnswer = makeUncompleteAnswer(3);
+			uncompleteAnswer = MakeUncompleteAnswer(3);
 		} else if (len <= 13) {
-			uncompleteAnswer = makeUncompleteAnswer(4);
+			uncompleteAnswer = MakeUncompleteAnswer(4);
 		} else {
-			uncompleteAnswer = makeUncompleteAnswer(5);
+			uncompleteAnswer = MakeUncompleteAnswer(5);
 		}
         return uncompleteAnswer;
     }
 
-    private string makeUncompleteAnswer(int numberOfBlankChar)
+    private string MakeUncompleteAnswer(int numberOfBlankChar)
     {
         string uncompleteAnswer = answer;
         StringBuilder sb = new StringBuilder(answer);
@@ -48,7 +48,7 @@ public class AnswerGenerator
     }
 
 
-    public List<int> getIndexBlankChar()
+    public List<int> GetIndexBlankChar()
     {
         indexBlankChar.Sort();
         return indexBlankChar;
